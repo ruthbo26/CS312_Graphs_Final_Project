@@ -1,12 +1,36 @@
+#ifndef GRAPH_H
+#define GRAPH_H
 
-Graph()      // Constructor. Creates a graph object. 
-void add_vertex ( ) //Adds a vertex to the graph (index automatically assigned)
-void add_edge (int source, int target) //Adds an edge connecting source to target
-int V( ) const //Returns the number of vertices
-int E( )const //Returns the number of edges
-set<int> neighbors(int v) const //Returns a set containing the vertices adjacent 
-// to v (the neighbors of v)
-bool contains(int v) const; //Checks whether vertex v is in the graph
+#include <set>
+#include <vector>
+#include <string>
+#include <iostream>
 
-//OVERLOADED OUTPUT OPERATOR
-friend std::ostream& operator<< (std::ostream &out, const Graph &g);
+class Graph {
+public:
+
+    // CONSTRUCTOR
+    Graph()  {nedges = 0; }
+
+    // MODIFICATION MEMBER FUNCTIONS
+    //adds a vertex to the graph. The index is automatically assigned.
+    void add_vertex();
+
+    //adds an edge connecting source to target
+    void add_edge(int source, int target);
+
+    // CONSTANT MEMBER FUNCTIONS
+    int V( ) const; 	//returns number of vertices
+    int E( ) const;     //returns number of edges
+    std::set<int> neighbors(int v) const;  //returns the vertices adjacent to vertex v
+    bool contains(int v) const;   //checks if the vertex v is in the graph
+
+    // OVERLOADED OUTPUT OPERATOR
+    friend std::ostream& operator<< (std::ostream &out, const Graph &g);
+
+private:
+  int nedges;
+  std::vector<std::set<int> > edges;
+};
+
+#endif
