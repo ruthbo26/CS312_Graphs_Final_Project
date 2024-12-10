@@ -42,5 +42,22 @@ int LabeledGraph::index(string vlabel) {
 }
 
 ostream& operator<< (ostream &out, const LabeledGraph &g) {
+
+  out << "======================================\n";
+  out << "Graph Summary: " << g.V() << " vertices, " << g.E() << " edges\n";
+  out << "======================================\n";
+
+  // Iterate through all vertices
+  for (int i = 0; i < g.V(); ++i) {
+    out << g.label(i) << " --> ";  //print label of current index
+
+    for (int neighbor : g.neighbors(i)) {
+      out << g.label(neighbor) << " ";  //print label for each vector
+    }
+
+    out << "\n";  //new line
+
   return out;
 }
+}
+

@@ -14,7 +14,7 @@ public:
 
     // MODIFICATION MEMBER FUNCTIONS
     //adds a vertex to the graph. The index is automatically assigned.
-    void add_vertex();
+    void add_vertex(); 
 
     //adds an edge connecting source to target
     void add_edge(int source, int target);
