@@ -11,7 +11,7 @@ class LabeledGraph {
 public:
 
     // CONSTRUCTOR
-    LabeledGraph()  {nedges = 0; }
+    LabeledGraph(std::string); //creates an empty graph
 
     // MODIFICATION MEMBER FUNCTIONS
     //adds a vertex with a specifc label
@@ -24,18 +24,19 @@ public:
     int V( ) const { return vertices.size(); } //number of vertices
     int E( ) const { return nedges; }       //number of edges
     bool contains(std::string vlabel) const;     //does graph contain vertex with label vlabel?
-    std::set<int> neighbors(int v) const;  //returns the vertices adjacent to vertex v
+    std::unordered_set<int> neighbors(int v) const;  //returns the vertices adjacent to vertex v
     std::string label(int v) const;     //returns the label of vertex v
     int index(std::string vlabel);           //returns the index of the vertex with label vlabel
-
+    std::unordered_map<int, int> BFS(int); //returns a map of the shortest path from vertex v to all other vertices
+    std::vector<int> pathTo(std::unordered_map<int, int>&, int); //returns the shortest path from vertex v to vertex w
     // OVERLOADED OUTPUT OPERATOR
     friend std::ostream& operator<< (std::ostream &out, const LabeledGraph &g);
 
 private:
   int nedges;
-  std::vector<std::set<int> > vertices;
+  std::vector<std::unordered_set<int> > vertices;
   std::vector<std::string> labels;
-  std::map<std::string, int> indexedLabels;
+  std::unordered_map<std::string, int> indexedLabels;
 };
 
 #endif
